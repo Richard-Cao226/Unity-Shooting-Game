@@ -1,0 +1,99 @@
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+
+public class TextRevealer : MonoBehaviour
+{
+    public TextMeshProUGUI text;
+    IEnumerator en, en2;
+    string[] texts;
+    int index;
+    bool coRunning, coRunning2;
+
+    void Start()
+    {
+        texts = new string[] {
+            "It's the year 2340. The cats acquired the ultra high tech brainwashing taser equipment and left the mouse world in hysteria. Ernie is one of very few mice who are still sane, and its up to him to save his friends and family. Be careful& the cats are out and prowling... [SPACE]",
+            "Goal: shoot the evil mice to save them. the player is able to bank the rescued mice to grow the empire or use the mice as protection in three modes: follow, shield, or freeze. The map expands based on the number of mice banked, and the game ends once 100 mice have been banked. Cats take 3 shots to kill and evil mice take one shot to convert. [SPACE]"
+        };
+        en = RevealText();
+        en2 = RevealText2();
+        StartCoroutine(en);
+    }
+
+
+    IEnumerator RevealText()
+    {
+        coRunning = true;
+        var originalString = text.text;
+
+        var numCharsRevealed = 0;
+        while (numCharsRevealed < originalString.Length)
+        {
+            while (originalString[numCharsRevealed] == ' ')
+                ++numCharsRevealed;
+
+            ++numCharsRevealed;
+
+            text.text = originalString.Substring(0, numCharsRevealed);
+
+            yield return new WaitForSeconds(0.07f);
+        }
+    }
+
+    IEnumerator RevealText2()
+    {
+        coRunning2 = true;
+        var originalString = text.text;
+
+        var numCharsRevealed = 0;
+        while (numCharsRevealed < originalString.Length)
+        {
+            while (originalString[numCharsRevealed] == ' ')
+                ++numCharsRevealed;
+
+            ++numCharsRevealed;
+
+            text.text = originalString.Substring(0, numCharsRevealed);
+
+            yield return new WaitForSeconds(0.07f);
+        }
+    }
+    // Update is called once per frame
+    void Update()
+    {
+        goText();
+    }
+
+    void goText()
+    {
+        if (Input.GetKeyDown("space"))
+        {
+            if (coRunning)
+            {
+                StopCoroutine(en);
+                text.text = texts[0];
+            }
+            else if (coRunning2)
+            {
+                StopCoroutine(en2);
+                text.text = texts[1];
+            }
+            else if (!coRunning && index == 0)
+            {
+                index = 1;
+                StartCoroutine(en2);
+                text.text = texts[index];
+            }
+            else if (!coRunning2 && index == 1)
+            {
+                index = 0;
+                StartCoroutine(en);
+                text.text = texts[index];
+            }
+        }
+    }
+}
