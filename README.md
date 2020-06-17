@@ -1,7 +1,7 @@
 # Unity-TopDownShooter
 A Top-Down-Shooting Game made with Unity and written in C#.
 ## How to play
-Execute CUTE/Build/cute.exe to run the game.
+Download the repository, then execute CUTE/Build/cute.exe to run the game.
 <img src="gallery.jpg">
 ## Game Backstory
 The cats have acquired brainwashing taser equipment and have turned your friends into foes. It is up to you to save them.
