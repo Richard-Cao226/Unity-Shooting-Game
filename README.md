@@ -1,5 +1,6 @@
 # Unity-TopDownShooter
-A Top-Down-Shooting Game made with Unity and written in C#. <br>
+A Top-Down-Shooting Game made with Unity and written in C#.
+## How to play
 Execute CUTE/Build/cute.exe to run the game.
 
 ## Game Backstory
